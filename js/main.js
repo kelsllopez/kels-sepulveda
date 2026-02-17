@@ -4,47 +4,61 @@
 const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
 const navLinks = document.querySelector('.nav-links');
 
-if (mobileMenuToggle) {
-    mobileMenuToggle.addEventListener('click', () => {
+if (mobileMenuToggle && navLinks) {
+    mobileMenuToggle.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const isOpen = navLinks.classList.contains('active');
         mobileMenuToggle.classList.toggle('active');
         navLinks.classList.toggle('active');
-        
-        // Prevent body scroll when menu is open
-        if (navLinks.classList.contains('active')) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'auto';
-        }
+        document.body.style.overflow = isOpen ? '' : 'hidden';
     });
-    
+
     // Close menu when clicking on a link
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             mobileMenuToggle.classList.remove('active');
             navLinks.classList.remove('active');
-            document.body.style.overflow = 'auto';
+            document.body.style.overflow = '';
         });
     });
-    
+
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {
-        if (!navLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+        if (navLinks.classList.contains('active') &&
+            !navLinks.contains(e.target) &&
+            !mobileMenuToggle.contains(e.target)) {
             mobileMenuToggle.classList.remove('active');
             navLinks.classList.remove('active');
-            document.body.style.overflow = 'auto';
+            document.body.style.overflow = '';
+        }
+    });
+
+    // Close on ESC key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+            mobileMenuToggle.classList.remove('active');
+            navLinks.classList.remove('active');
+            document.body.style.overflow = '';
         }
     });
 }
 
 // ================================================
-// Smooth scroll
+// Smooth scroll (respects reduced motion)
 // ================================================
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        const target = document.querySelector(href);
         if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            e.preventDefault();
+            target.scrollIntoView({
+                behavior: prefersReducedMotion ? 'auto' : 'smooth',
+                block: 'start'
+            });
         }
     });
 });
@@ -53,8 +67,8 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 // Scroll animations (IntersectionObserver)
 // ================================================
 const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
+    threshold: 0.08,
+    rootMargin: '0px 0px -60px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
@@ -72,51 +86,44 @@ document.querySelectorAll('[data-animate]').forEach(el => {
 // ================================================
 // Active nav link on scroll
 // ================================================
-window.addEventListener('scroll', () => {
-    let current = '';
-    const sections = document.querySelectorAll('section[id]');
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (pageYOffset >= sectionTop - 200) {
-            current = section.getAttribute('id');
-        }
-    });
+const sections = document.querySelectorAll('section[id]');
 
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href').slice(1) === current) {
-            link.classList.add('active');
+const scrollObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+            });
         }
     });
-});
+}, { rootMargin: '-40% 0px -55% 0px' });
+
+sections.forEach(section => scrollObserver.observe(section));
 
 // ================================================
-// CAROUSEL — automático + manual
-// Usa el índice del elemento en el DOM como ID único,
-// así no importa qué valor tenga data-carousel.
+// CAROUSEL
 // ================================================
 let currentSlides = {};
 let autoTimers = {};
-let carouselElements = []; // referencia directa a cada .carousel-slides
+let carouselElements = [];
 
-const AUTOPLAY_DELAY = 3000;
+const AUTOPLAY_DELAY = 3500;
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Recopilar todos los carousels por orden de aparición
+    // Collect all carousels by DOM order
     document.querySelectorAll('.carousel-slides').forEach((el, index) => {
         carouselElements[index] = el;
         currentSlides[index] = 0;
         startAutoplay(index);
     });
 
-    // Generar los dots dinámicamente según la cantidad real de slides
+    // Generate dots dynamically
     carouselElements.forEach((carousel, index) => {
         const slides = carousel.querySelectorAll('.carousel-slide');
         const dotsContainer = carousel.parentElement.querySelector('.carousel-dots');
         if (!dotsContainer) return;
 
-        // Limpiar dots existentes (por si el HTML tiene una cantidad incorrecta)
         dotsContainer.innerHTML = '';
 
         slides.forEach((_, i) => {
@@ -127,30 +134,60 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Reapuntar los botones prev/next de cada carousel al índice correcto
+    // Rebind prev/next buttons by DOM index
     document.querySelectorAll('.project-carousel').forEach((carouselWrapper, index) => {
         const prevBtn = carouselWrapper.querySelector('.carousel-nav.prev');
         const nextBtn = carouselWrapper.querySelector('.carousel-nav.next');
 
         if (prevBtn) {
             prevBtn.removeAttribute('onclick');
-            prevBtn.addEventListener('click', () => changeSlide(index, -1));
+            prevBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                changeSlide(index, -1);
+            });
         }
         if (nextBtn) {
             nextBtn.removeAttribute('onclick');
-            nextBtn.addEventListener('click', () => changeSlide(index, 1));
+            nextBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                changeSlide(index, 1);
+            });
         }
     });
 
-    // Click en imágenes → lightbox
-    document.querySelectorAll('.carousel-slide img').forEach((img) => {
-        const slidesEl = img.closest('.carousel-slides');
-        const carouselIndex = carouselElements.indexOf(slidesEl);
-        const slideIndex = Array.from(slidesEl.querySelectorAll('.carousel-slide'))
-            .indexOf(img.closest('.carousel-slide'));
+    // Touch/swipe support for carousels
+    carouselElements.forEach((carousel, index) => {
+        let touchStartX = 0;
+        let touchEndX = 0;
+        let isDragging = false;
 
-        img.addEventListener('click', () => {
-            openLightbox(carouselIndex, slideIndex);
+        carousel.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            isDragging = false;
+        }, { passive: true });
+
+        carousel.addEventListener('touchmove', (e) => {
+            isDragging = true;
+        }, { passive: true });
+
+        carousel.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            const diff = touchStartX - touchEndX;
+            if (Math.abs(diff) > 40) { // min swipe distance
+                changeSlide(index, diff > 0 ? 1 : -1);
+            }
+        }, { passive: true });
+
+        // Click on image → lightbox
+        carousel.querySelectorAll('.carousel-slide img').forEach((img) => {
+            const slideIndex = Array.from(carousel.querySelectorAll('.carousel-slide'))
+                .indexOf(img.closest('.carousel-slide'));
+
+            img.addEventListener('click', () => {
+                if (!isDragging) {
+                    openLightbox(index, slideIndex);
+                }
+            });
         });
     });
 });
@@ -159,23 +196,19 @@ document.addEventListener('DOMContentLoaded', () => {
 // Autoplay
 // ------------------------------------------------
 function startAutoplay(carouselIndex) {
-    if (autoTimers[carouselIndex]) {
-        clearInterval(autoTimers[carouselIndex]);
-    }
+    if (autoTimers[carouselIndex]) clearInterval(autoTimers[carouselIndex]);
     autoTimers[carouselIndex] = setInterval(() => {
         changeSlide(carouselIndex, 1, false);
     }, AUTOPLAY_DELAY);
 }
 
 function resetAutoplay(carouselIndex) {
-    if (autoTimers[carouselIndex]) {
-        clearInterval(autoTimers[carouselIndex]);
-    }
+    if (autoTimers[carouselIndex]) clearInterval(autoTimers[carouselIndex]);
     startAutoplay(carouselIndex);
 }
 
 // ------------------------------------------------
-// Cambio de slide
+// Slide change
 // ------------------------------------------------
 function changeSlide(carouselIndex, direction, resetTimer = true) {
     const carousel = carouselElements[carouselIndex];
@@ -191,10 +224,7 @@ function changeSlide(carouselIndex, direction, resetTimer = true) {
     }
 
     updateCarousel(carouselIndex);
-
-    if (resetTimer) {
-        resetAutoplay(carouselIndex);
-    }
+    if (resetTimer) resetAutoplay(carouselIndex);
 }
 
 function goToSlide(carouselIndex, slideIndex) {
@@ -207,12 +237,11 @@ function updateCarousel(carouselIndex) {
     const carousel = carouselElements[carouselIndex];
     if (!carousel) return;
 
-    const dots = carousel.parentElement.querySelectorAll('.carousel-dot');
-
     carousel.style.transform = `translateX(-${currentSlides[carouselIndex] * 100}%)`;
 
-    dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentSlides[carouselIndex]);
+    const dots = carousel.parentElement.querySelectorAll('.carousel-dot');
+    dots.forEach((dot, i) => {
+        dot.classList.toggle('active', i === currentSlides[carouselIndex]);
     });
 }
 
@@ -233,50 +262,95 @@ function openLightbox(carouselIndex, slideIndex) {
     if (lightboxImages.length === 0) return;
 
     updateLightboxImage();
-    document.getElementById('lightboxModal').classList.add('active');
-    document.body.style.overflow = 'hidden';
+    const modal = document.getElementById('lightboxModal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
 }
 
 function closeLightbox() {
-    document.getElementById('lightboxModal').classList.remove('active');
-    document.body.style.overflow = 'auto';
+    const modal = document.getElementById('lightboxModal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
 }
 
 function lightboxNavigate(direction) {
     currentLightboxIndex += direction;
-
-    if (currentLightboxIndex < 0) {
-        currentLightboxIndex = lightboxImages.length - 1;
-    } else if (currentLightboxIndex >= lightboxImages.length) {
-        currentLightboxIndex = 0;
-    }
-
+    if (currentLightboxIndex < 0) currentLightboxIndex = lightboxImages.length - 1;
+    else if (currentLightboxIndex >= lightboxImages.length) currentLightboxIndex = 0;
     updateLightboxImage();
 }
 
 function updateLightboxImage() {
-    document.getElementById('lightboxImage').src = lightboxImages[currentLightboxIndex];
-    document.getElementById('lightboxCounter').textContent =
-        `${currentLightboxIndex + 1} / ${lightboxImages.length}`;
+    const img = document.getElementById('lightboxImage');
+    const counter = document.getElementById('lightboxCounter');
+    if (img) img.src = lightboxImages[currentLightboxIndex];
+    if (counter) counter.textContent = `${currentLightboxIndex + 1} / ${lightboxImages.length}`;
 }
 
-// Teclado: ESC cierra, arrows navegan lightbox
+// Keyboard navigation
 document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        closeLightbox();
-    } else if (e.key === 'ArrowLeft') {
-        lightboxNavigate(-1);
-    } else if (e.key === 'ArrowRight') {
-        lightboxNavigate(1);
-    }
+    const modal = document.getElementById('lightboxModal');
+    if (!modal || !modal.classList.contains('active')) return;
+
+    if (e.key === 'Escape') closeLightbox();
+    else if (e.key === 'ArrowLeft') lightboxNavigate(-1);
+    else if (e.key === 'ArrowRight') lightboxNavigate(1);
 });
 
-// Click fuera de la imagen cierra el lightbox
-document.getElementById('lightboxModal').addEventListener('click', (e) => {
-    if (e.target.id === 'lightboxModal') {
-        closeLightbox();
-    }
-});
+// Touch swipe on lightbox
+(function () {
+    const modal = document.getElementById('lightboxModal');
+    if (!modal) return;
+    let startX = 0;
+
+    modal.addEventListener('touchstart', (e) => {
+        startX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    modal.addEventListener('touchend', (e) => {
+        const diff = startX - e.changedTouches[0].screenX;
+        if (Math.abs(diff) > 40) lightboxNavigate(diff > 0 ? 1 : -1);
+    }, { passive: true });
+
+    // Click outside image closes lightbox
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeLightbox();
+    });
+})();
+
+// ================================================
+// SCROLL TO TOP BUTTON
+// ================================================
+(function () {
+    const btn = document.createElement('button');
+    btn.className = 'scroll-to-top';
+    btn.setAttribute('aria-label', 'Volver al inicio');
+    btn.setAttribute('title', 'Volver al inicio');
+    btn.innerHTML = `
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="18 15 12 9 6 15"></polyline>
+        </svg>`;
+    document.body.appendChild(btn);
+
+    const toggleVisibility = () => {
+        btn.classList.toggle('visible', window.scrollY > 400);
+    };
+
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
+    toggleVisibility();
+
+    btn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: prefersReducedMotion ? 'auto' : 'smooth'
+        });
+    });
+})();
 
 // ================================================
 // CONTACT FORM HANDLING
@@ -287,35 +361,39 @@ const formStatus = document.querySelector('.form-status');
 if (contactForm) {
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
         const submitBtn = contactForm.querySelector('.btn-submit');
         submitBtn.classList.add('loading');
-        formStatus.style.display = 'none';
-        formStatus.classList.remove('success', 'error');
-        
+        if (formStatus) {
+            formStatus.style.display = 'none';
+            formStatus.classList.remove('success', 'error');
+        }
+
         try {
             const formData = new FormData(contactForm);
             const response = await fetch(contactForm.action, {
                 method: 'POST',
                 body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
+                headers: { 'Accept': 'application/json' }
             });
-            
+
             if (response.ok) {
-                formStatus.textContent = '¡Mensaje enviado exitosamente! Te responderé pronto.';
-                formStatus.classList.add('success');
+                if (formStatus) {
+                    formStatus.textContent = '¡Mensaje enviado exitosamente! Te responderé pronto.';
+                    formStatus.classList.add('success');
+                }
                 contactForm.reset();
             } else {
-                throw new Error('Error al enviar el formulario');
+                throw new Error('Error en el servidor');
             }
         } catch (error) {
-            formStatus.textContent = 'Hubo un error al enviar el mensaje. Por favor intenta nuevamente.';
-            formStatus.classList.add('error');
+            if (formStatus) {
+                formStatus.textContent = 'Hubo un error al enviar el mensaje. Por favor intenta nuevamente.';
+                formStatus.classList.add('error');
+            }
         } finally {
             submitBtn.classList.remove('loading');
-            formStatus.style.display = 'block';
+            if (formStatus) formStatus.style.display = 'block';
         }
     });
 }
