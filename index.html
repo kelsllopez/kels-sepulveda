@@ -3,22 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Katalina Sepúlveda | Ingeniera en Informática</title>
-    <meta name="description" content="Portafolio profesional de Katalina Sepúlveda, Ingeniera en Informática. Desarrollo web, aplicaciones, IA y soluciones personalizadas.">
-    <meta name="keywords" content="Katalina Sepúlveda, Ingeniera Informática, desarrolladora web, Django, Python, Valdivia, Chile, portafolio">
-    <meta property="og:title" content="Katalina Sepúlveda | Ingeniera en Informática">
-    <meta property="og:description" content="Desarrollo web, apps e inteligencia artificial. Portafolio profesional de Katalina Sepúlveda.">
+    <title>Katalina Sepúlveda | SOC Analyst · Blue Team</title>
+    <meta name="description" content="Portafolio de Katalina Sepúlveda, SOC Analyst junior (Blue Team). Home lab con Wazuh, reportes de incidente NIST, detecciones MITRE ATT&CK, insignias Cisco e ISC2. Disponible para trabajo remoto.">
+    <meta name="keywords" content="Katalina Sepúlveda, SOC Analyst, Blue Team, Wazuh, SIEM, MITRE ATT&CK, NIST 800-61, ciberseguridad, Chile, remoto, portafolio">
+    <meta property="og:title" content="Katalina Sepúlveda | SOC Analyst · Blue Team">
+    <meta property="og:description" content="Home lab Wazuh, detecciones MITRE ATT&CK y reportes de incidente NIST. Busco mi posición como SOC Analyst remoto.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-
 </head>
 <body>
     <!-- Header  -->
     <header>
         <nav>
-            <a href="#" class="logo">&lt;/dev&gt;</a>
+            <a href="#" class="logo">&lt;/soc&gt;</a>
             <button class="mobile-menu-toggle" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
@@ -26,9 +25,11 @@
             </button>
             <ul class="nav-links">
                 <li><a href="#about">Sobre mí</a></li>
+                <li><a href="#soc">SOC Lab</a></li>
                 <li><a href="#stack">Stack</a></li>
-                <li><a href="#projects">Proyectos</a></li>
-                <li><a href="#certifications">Certificaciones</a></li>
+                
+                <li><a href="#certifications">Insignias</a></li>
+                <li><a href="#projects">Desarrollo</a></li>
                 <li><a href="#experience">Estudios</a></li>
                 <li><a href="#contact">Contacto</a></li>
             </ul>
@@ -39,34 +40,33 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <span class="hero-tag">// Backend Developer</span>
+                <span class="hero-tag">// SOC Analyst · Blue Team</span>
                 <h1>Katalina Escarlet <span class="highlight">Sepúlveda López</span></h1>
                 <p class="hero-subtitle">
-                    Ingeniera en Informática especializada en desarrollo Backend con Python, Django y SQL. 
-                    Diseño sistemas robustos, APIs eficientes y soluciones que optimizan procesos reales.
+                    Ingeniera en Informática reconvertida a ciberseguridad. Opero un home lab con Wazuh,
+                    simulo ataques, escribo detecciones y documento incidentes con NIST SP 800-61 y MITRE ATT&amp;CK.
+                    Busco mi posición como SOC Analyst, en modalidad remota.
                 </p>
+                <div class="hero-status">
+                    <span class="status-dot"></span> Disponible para trabajo remoto · Chile (UTC-3)
+                </div>
                 <div class="hero-cta">
-                    <a href="#projects" class="btn btn-primary">Ver proyectos →</a>
+                    <a href="#soc" class="btn btn-primary">Ver SOC Lab →</a>
+                    <a href="https://github.com/kelsllopez" target="_blank" rel="noopener" class="btn btn-secondary">GitHub</a>
                     <a href="#contact" class="btn btn-secondary">Contactar</a>
                 </div>
             </div>
 
             <div class="code-snippet">
-                <pre><span class="comment"># Django REST Framework</span>
-                <span class="keyword">class</span> <span class="class">UserViewSet</span>(viewsets.ModelViewSet):
-    <span class="decorator">@action</span>(detail=<span class="keyword">False</span>, methods=[<span class="string">'post'</span>])
-    <span class="keyword">def</span> <span class="class">authenticate</span>(self, request):
-        serializer = <span class="class">AuthSerializer</span>(
-            data=request.data
-        )
-        <span class="keyword">if</span> serializer.is_valid():
-            <span class="keyword">return</span> <span class="class">Response</span>({
-                <span class="string">'token'</span>: generate_token()
-            })
-        <span class="keyword">return</span> <span class="class">Response</span>(
-            serializer.errors,
-            status=<span class="string">400</span>
-        )</pre>
+                <pre><span class="comment">&lt;!-- ejemplo: regla custom Wazuh --&gt;</span>
+<span class="keyword">&lt;rule</span> <span class="class">id</span>=<span class="string">"100002"</span> <span class="class">level</span>=<span class="string">"12"</span>
+      <span class="class">frequency</span>=<span class="string">"8"</span> <span class="class">timeframe</span>=<span class="string">"120"</span><span class="keyword">&gt;</span>
+  <span class="keyword">&lt;if_matched_sid&gt;</span><span class="string">60122</span><span class="keyword">&lt;/if_matched_sid&gt;</span>
+  <span class="keyword">&lt;same_source_ip /&gt;</span>
+  <span class="keyword">&lt;description&gt;</span>Brute force: múltiples
+    fallos de inicio de sesión<span class="keyword">&lt;/description&gt;</span>
+  <span class="keyword">&lt;mitre&gt;&lt;id&gt;</span><span class="decorator">T1110</span><span class="keyword">&lt;/id&gt;&lt;/mitre&gt;</span>
+<span class="keyword">&lt;/rule&gt;</span></pre>
             </div>
         </div>
     </section>
@@ -76,21 +76,263 @@
         <div class="container">
             <div class="section-header" data-animate>
                 <span class="section-tag">// 01. Sobre mí</span>
-                <h2 class="section-title">Backend Developer enfocada en soluciones</h2>
+                <h2 class="section-title">De soporte y desarrollo a Blue Team</h2>
             </div>
 
             <div class="about-content">
                 <div class="about-text" data-animate>
                     <p>
-                        Desarrolladora Full Stack con especialización en Backend, experta en Python y Django.
+                        Vengo del soporte TI y del desarrollo de software, y hoy mi foco es el trabajo de un SOC:
+                        monitorear, detectar, investigar y documentar incidentes.
                     </p>
                     <p>
-                        Construyo aplicaciones web end-to-end: desarrollo backend, frontend funcional,
-                        integración de bases de datos y despliegue en producción sobre servidores Linux.
+                        Mantengo un home lab con Wazuh y VirtualBox donde ejecuto ataques simulados (reconocimiento,
+                        fuerza bruta, movimiento lateral, escalada y persistencia), construyo reglas de detección
+                        y escribo reportes formales de incidente.
                     </p>
                     <p>
-                        Trabajo en proyectos reales, cuidando la estabilidad, seguridad y mantenibilidad del sistema.
+                        Mi pasado en desarrollo me permite automatizar el análisis con Python y PowerShell,
+                        y entender cómo se construyen (y se rompen) las aplicaciones que un SOC debe proteger.
                     </p>
+                </div>
+            </div>
+
+            <div class="about-stats">
+                <div class="stat-card" data-animate>
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">escenarios de ataque simulados</div>
+                </div>
+                <div class="stat-card" data-animate>
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">reglas de detección custom</div>
+                </div>
+                <div class="stat-card" data-animate>
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">reportes de incidente (NIST 800-61)</div>
+                </div>
+                <div class="stat-card" data-animate>
+                    <div class="stat-number">9</div>
+                    <div class="stat-label">insignias Cisco e ISC2</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOC Lab Section -->
+    <section id="soc">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <span class="section-tag">// 02. SOC Lab &amp; Proyectos de Ciberseguridad</span>
+                <h2 class="section-title">Detección, análisis y respuesta</h2>
+                <p class="section-description">
+                    Proyectos de Blue Team que muestran cómo trabajo: del evento crudo al reporte de incidente.
+                    Todo el código y la documentación está en mi GitHub.
+                </p>
+            </div>
+
+            <div class="projects-grid soc-grid">
+                <article class="project-card soc-card" data-animate>
+                    <div class="soc-banner"><span class="soc-icon">🛡️</span><span class="soc-repo">kelsllopez/soc-homelab-detections</span></div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <div>
+                                <h3 class="project-title">SOC Home Lab — Detecciones con Wazuh</h3>
+                                <span class="project-type">Blue Team | SIEM</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Semana simulada de SOC Analyst sobre un home lab con Wazuh SIEM: 6 escenarios de ataque,
+                            5 reglas de detección custom y la kill chain completa documentada con MITRE ATT&amp;CK.
+                        </p>
+                        <div class="project-architecture">
+                            <h4>Tecnologías</h4>
+                            <div class="architecture-list">
+                                <span class="architecture-item">Wazuh</span>
+                                <span class="architecture-item">MITRE ATT&amp;CK</span>
+                                <span class="architecture-item">Kali Linux</span>
+                                <span class="architecture-item">Windows Server</span>
+                                <span class="architecture-item">VirtualBox</span>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/kelsllopez/soc-homelab-detections" target="_blank" rel="noopener" class="btn btn-secondary">Ver repositorio</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card soc-card" data-animate>
+                    <div class="soc-banner"><span class="soc-icon">📄</span><span class="soc-repo">kelsllopez/incident-reports</span></div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <div>
+                                <h3 class="project-title">Reportes de Incidente (IR-001 a IR-005)</h3>
+                                <span class="project-type">Respuesta a incidentes</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Portafolio de reportes formales siguiendo NIST SP 800-61. Cubre la kill chain completa:
+                            reconocimiento → fuerza bruta → movimiento lateral → escalada de privilegios → persistencia.
+                        </p>
+                        <div class="project-architecture">
+                            <h4>Tecnologías</h4>
+                            <div class="architecture-list">
+                                <span class="architecture-item">NIST SP 800-61</span>
+                                <span class="architecture-item">Wazuh</span>
+                                <span class="architecture-item">MITRE ATT&amp;CK</span>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/kelsllopez/incident-reports" target="_blank" rel="noopener" class="btn btn-secondary">Ver reportes</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card soc-card" data-animate>
+                    <div class="soc-banner"><span class="soc-icon">📧</span><span class="soc-repo">kelsllopez/phishing-analyzer</span></div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <div>
+                                <h3 class="project-title">Phishing Analyzer</h3>
+                                <span class="project-type">Python | Análisis de correo</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Herramienta en Python para analizar correos de phishing: validación SPF/DKIM/DMARC,
+                            extracción de IOCs, scoring de riesgo e integración con la API de VirusTotal.
+                        </p>
+                        <div class="project-architecture">
+                            <h4>Tecnologías</h4>
+                            <div class="architecture-list">
+                                <span class="architecture-item">Python</span>
+                                <span class="architecture-item">SPF / DKIM / DMARC</span>
+                                <span class="architecture-item">VirusTotal API</span>
+                                <span class="architecture-item">IOCs</span>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/kelsllopez/phishing-analyzer" target="_blank" rel="noopener" class="btn btn-secondary">Ver repositorio</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card soc-card" data-animate>
+                    <div class="soc-banner"><span class="soc-icon">🪟</span><span class="soc-repo">kelsllopez/windows-event-investigator</span></div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <div>
+                                <h3 class="project-title">Windows Event Investigator</h3>
+                                <span class="project-type">PowerShell | Forense</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Script de PowerShell para forense de Windows Event Logs: detecta fuerza bruta,
+                            escalada de privilegios y persistencia a partir de Event IDs críticos.
+                            Genera reportes HTML/JSON listos para integrar con Wazuh.
+                        </p>
+                        <div class="project-architecture">
+                            <h4>Tecnologías</h4>
+                            <div class="architecture-list">
+                                <span class="architecture-item">PowerShell</span>
+                                <span class="architecture-item">Windows Event Logs</span>
+                                <span class="architecture-item">Wazuh</span>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/kelsllopez/windows-event-investigator" target="_blank" rel="noopener" class="btn btn-secondary">Ver repositorio</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card soc-card" data-animate>
+                    <div class="soc-banner"><span class="soc-icon">🔍</span><span class="soc-repo">kelsllopez/cyberpilot-ai</span></div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <div>
+                                <h3 class="project-title">CyberPilot AI — Escáner de seguridad web</h3>
+                                <span class="project-type">Full-stack | Seguridad</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Aplicación full-stack que analiza la seguridad de sitios web con un motor de múltiples
+                            analizadores y un sistema de puntuación. Une mi experiencia en desarrollo con el enfoque de seguridad.
+                        </p>
+                        <div class="project-architecture">
+                            <h4>Tecnologías</h4>
+                            <div class="architecture-list">
+                                <span class="architecture-item">Node.js / Express</span>
+                                <span class="architecture-item">TypeScript</span>
+                                <span class="architecture-item">React + Vite</span>
+                                <span class="architecture-item">JWT</span>
+                                <span class="architecture-item">GitHub Actions</span>
+                            </div>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/kelsllopez/cyberpilot-ai" target="_blank" rel="noopener" class="btn btn-secondary">Ver repositorio</a>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="project-card soc-card soc-card-more" data-animate>
+                    <div class="soc-banner"><span class="soc-icon">📚</span><span class="soc-repo">github.com/kelsllopez</span></div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <div>
+                                <h3 class="project-title">Más laboratorios y guías</h3>
+                                <span class="project-type">18 repositorios</span>
+                            </div>
+                        </div>
+                        <p class="project-description">
+                            Ejercicios de análisis de logs, respuesta a incidentes, phishing, hardening y políticas
+                            de contraseñas. Cada uno es un caso práctico documentado.
+                        </p>
+                        <div class="project-links">
+                            <a href="#more-labs" class="btn btn-secondary">Ver la lista ↓</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+            <div class="repo-groups" id="more-labs">
+                <h3 class="repo-groups-title" data-animate>Más repositorios de ciberseguridad</h3>
+                <div class="repo-groups-grid">
+                    <div class="repo-group" data-animate>
+                        <h4>Phishing &amp; correo</h4>
+                        <ul>
+                            <li><a href="https://github.com/kelsllopez/Spear-Phishing-Incident-Response-Protocol" target="_blank" rel="noopener">Spear-Phishing: protocolo de respuesta</a></li>
+                            <li><a href="https://github.com/kelsllopez/Email-Phishing-Detection-Analysis-of-Suspicious-Emails." target="_blank" rel="noopener">Detección de phishing: análisis de correos sospechosos</a></li>
+                            <li><a href="https://github.com/kelsllopez/Phishing-Email-Analysis-Phishing-Attempt-Detection-and-Awareness-Program" target="_blank" rel="noopener">Análisis de phishing y programa de concientización</a></li>
+                            <li><a href="https://github.com/kelsllopez/Phishing-Awareness-Training-Module" target="_blank" rel="noopener">Módulo de capacitación anti-phishing (1)</a></li>
+                            <li><a href="https://github.com/kelsllopez/Phishing-Awareness-Training-Module-2" target="_blank" rel="noopener">Módulo de capacitación anti-phishing (2)</a></li>
+                            <li><a href="https://github.com/kelsllopez/Fake-E-commerce-Website-Detection." target="_blank" rel="noopener">Detección de sitios e-commerce falsos</a></li>
+                        </ul>
+                    </div>
+                    <div class="repo-group" data-animate>
+                        <h4>Monitoreo &amp; respuesta</h4>
+                        <ul>
+                            <li><a href="https://github.com/kelsllopez/IDS-Alert-Analysis-Classification-and-Response-to-Security-Alerts" target="_blank" rel="noopener">Análisis y clasificación de alertas IDS</a></li>
+                            <li><a href="https://github.com/kelsllopez/Firewall-Log-Analysis-Threat-Detection-in-an-Enterprise-Network" target="_blank" rel="noopener">Análisis de logs de firewall</a></li>
+                            <li><a href="https://github.com/kelsllopez/Incident-Response-Plan-Unauthorized-Access-to-Corporate-Network" target="_blank" rel="noopener">Plan de respuesta: acceso no autorizado</a></li>
+                            <li><a href="https://github.com/kelsllopez/Network-Security-Analysis-Prompt." target="_blank" rel="noopener">Análisis de seguridad de red</a></li>
+                        </ul>
+                    </div>
+                    <div class="repo-group" data-animate>
+                        <h4>Hardening &amp; vulnerabilidades</h4>
+                        <ul>
+                            <li><a href="https://github.com/kelsllopez/Security-Configuration-Audit-Corporate-WiFi-Network" target="_blank" rel="noopener">Auditoría de configuración WiFi corporativa</a></li>
+                            <li><a href="https://github.com/kelsllopez/Defense-Guide-SQL-Injection-in-E-commerce-Platforms" target="_blank" rel="noopener">Guía de defensa contra SQL Injection</a></li>
+                            <li><a href="https://github.com/kelsllopez/linux-web-server-vulnerability-assessment" target="_blank" rel="noopener">Evaluación de vulnerabilidades: servidor web Linux</a></li>
+                            <li><a href="https://github.com/kelsllopez/web-security-guide" target="_blank" rel="noopener">Guía de seguridad web</a></li>
+                        </ul>
+                    </div>
+                    <div class="repo-group" data-animate>
+                        <h4>Contraseñas &amp; políticas</h4>
+                        <ul>
+                            <li><a href="https://github.com/kelsllopez/password-strength-analysis" target="_blank" rel="noopener">Análisis de fortaleza de contraseñas</a></li>
+                            <li><a href="https://github.com/kelsllopez/predictive-password-failure-detection" target="_blank" rel="noopener">Detección predictiva de fallos de contraseña</a></li>
+                            <li><a href="https://github.com/kelsllopez/automated-application-of-password-policies" target="_blank" rel="noopener">Aplicación automática de políticas de contraseña</a></li>
+                            <li><a href="https://github.com/kelsllopez/-AI-generated-password-recommendations" target="_blank" rel="noopener">Recomendaciones de contraseñas con IA</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -100,14 +342,69 @@
     <section id="stack">
         <div class="container">
             <div class="section-header" data-animate>
-                <span class="section-tag">// 02. Stack Tecnológico</span>
-                <h2 class="section-title">Herramientas que domino</h2>
+                <span class="section-tag">// 03. Stack Tecnológico</span>
+                <h2 class="section-title">Herramientas que uso</h2>
                 <p class="section-description">
-                    Tecnologías que utilizo para desarrollar aplicaciones web completas y llevarlas a producción.
+                    Primero lo que uso para detectar y responder; después la base de desarrollo e infraestructura que me acompaña.
                 </p>
             </div>
 
             <div class="stack-grid">
+                <div class="stack-category stack-category-soc" data-animate>
+                    <h3>SIEM &amp; Monitoreo</h3>
+                    <div class="tech-list">
+                        <span class="tech-tag">Wazuh</span>
+                        <span class="tech-tag">ELK Stack</span>
+                        <span class="tech-tag">Windows Event Logs</span>
+                    </div>
+                </div>
+                <div class="stack-category stack-category-soc" data-animate>
+                    <h3>Frameworks &amp; Procesos</h3>
+                    <div class="tech-list">
+                        <span class="tech-tag">MITRE ATT&amp;CK</span>
+                        <span class="tech-tag">NIST SP 800-61</span>
+                        <span class="tech-tag">Kill Chain</span>
+                        <span class="tech-tag">Triage de alertas</span>
+                    </div>
+                </div>
+                <div class="stack-category stack-category-soc" data-animate>
+                    <h3>Análisis &amp; Investigación</h3>
+                    <div class="tech-list">
+                        <span class="tech-tag">Wireshark</span>
+                        <span class="tech-tag">VirusTotal</span>
+                        <span class="tech-tag">SPF / DKIM / DMARC</span>
+                        <span class="tech-tag">IOCs</span>
+                    </div>
+                </div>
+                <div class="stack-category stack-category-soc" data-animate>
+                    <h3>Laboratorio</h3>
+                    <div class="tech-list">
+                        <span class="tech-tag">VirtualBox</span>
+                        <span class="tech-tag">Kali Linux</span>
+                        <span class="tech-tag">Active Directory</span>
+                        <span class="tech-tag">Windows Server</span>
+                        <span class="tech-tag">Ubuntu</span>
+                    </div>
+                </div>
+                <div class="stack-category stack-category-soc" data-animate>
+                    <h3>Automatización</h3>
+                    <div class="tech-list">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">PowerShell</span>
+                        <span class="tech-tag">Git</span>
+                        <span class="tech-tag">GitHub Actions</span>
+                    </div>
+                </div>
+                <div class="stack-category stack-category-soc" data-animate>
+                    <h3>Redes</h3>
+                    <div class="tech-list">
+                        <span class="tech-tag">Cisco Packet Tracer</span>
+                        <span class="tech-tag">TCP/IP</span>
+                        <span class="tech-tag">Defensa de red</span>
+                        <span class="tech-tag">Seguridad de endpoints</span>
+                    </div>
+                </div>
+
                 <div class="stack-category" data-animate>
                     <h3>Backend & Frameworks</h3>
                     <div class="tech-list">
@@ -176,7 +473,7 @@
                     </div>
                 </div>
                 <div class="stack-category" data-animate>
-                    <h3>Otros</h3>
+                    <h3>IA &amp; Otros</h3>
                     <div class="tech-list">
                         <span class="tech-tag">PyTorch</span>
                         <span class="tech-tag">NLP</span>
@@ -190,12 +487,105 @@
         </div>
     </section>
 
+    <!-- Certifications Section -->
+    <section id="certifications">
+        <div class="container">
+            <div class="section-header" data-animate>
+                <span class="section-tag">// 04. Insignias &amp; Certificaciones</span>
+                <h2 class="section-title">Formación en ciberseguridad</h2>
+                <p class="section-description">
+                    Insignias verificables de Cisco Networking Academy e ISC2, emitidas entre 2024 y 2026.
+                </p>
+            </div>
+
+            <div class="badges-grid">
+                <a class="badge-card badge-featured" href="https://www.credly.com/users/katalina-escarlet-sepulveda-lopez/badges" target="_blank" rel="noopener" data-animate>
+                    <div class="badge-icon isc2">ISC2</div>
+                    <div class="badge-body">
+                        <h3 class="badge-title">Candidato de ISC2</h3>
+                        <p class="badge-issuer">ISC2</p>
+                        <p class="badge-date">Vigente hasta abr 2027 · preparando el examen CC</p>
+                    </div>
+                </a>
+                <a class="badge-card" href="https://www.credly.com/users/katalina-escarlet-sepulveda-lopez/badges" target="_blank" rel="noopener" data-animate>
+                    <div class="badge-icon cisco">CISCO</div>
+                    <div class="badge-body">
+                        <h3 class="badge-title">Carrera de analista de ciberseguridad junior</h3>
+                        <p class="badge-issuer">Cisco</p>
+                        <p class="badge-date">20 feb 2026</p>
+                    </div>
+                </a>
+                <a class="badge-card" href="https://www.credly.com/users/katalina-escarlet-sepulveda-lopez/badges" target="_blank" rel="noopener" data-animate>
+                    <div class="badge-icon cisco">CISCO</div>
+                    <div class="badge-body">
+                        <h3 class="badge-title">Gestión de Amenazas Cibernéticas</h3>
+                        <p class="badge-issuer">Cisco</p>
+                        <p class="badge-date">19 feb 2026</p>
+                    </div>
+                </a>
+                <a class="badge-card" href="https://www.credly.com/users/katalina-escarlet-sepulveda-lopez/badges" target="_blank" rel="noopener" data-animate>
+                    <div class="badge-icon cisco">CISCO</div>
+                    <div class="badge-body">
+                        <h3 class="badge-title">Defensa de red</h3>
+                        <p class="badge-issuer">Cisco</p>
+                        <p class="badge-date">18 feb 2026</p>
+                    </div>
+                </a>
+                <a class="badge-card" href="https://www.credly.com/users/katalina-escarlet-sepulveda-lopez/badges" target="_blank" rel="noopener" data-animate>
+                    <div class="badge-icon cisco">CISCO</div>
+                    <div class="badge-body">
+                        <h3 class="badge-title">Seguridad de Endpoints</h3>
+                        <p class="badge-issuer">Cisco</p>
+                        <p class="badge-date">16 feb 2026</p>
+                    </div>
+                </a>
+                <a class="badge-card" href="https://www.credly.com/users/katalina-escarlet-sepulveda-lopez/badges" target="_blank" rel="noopener" data-animate>
+                    <div class="badge-icon cisco">CISCO</div>
+                    <div class="badge-body">
+                        <h3 class="badge-title">Dispositivos de red y configuración inicial</h3>
+                        <p class="badge-issuer">Cisco</p>
+                        <p class="badge-date">13 feb 2026</p>
+                    </div>
+                </a>
+                <a class="badge-card" href="https://www.credly.com/users/katalina-escarlet-sepulveda-lopez/badges" target="_blank" rel="noopener" data-animate>
+                    <div class="badge-icon cisco">CISCO</div>
+                    <div class="badge-body">
+                        <h3 class="badge-title">Introducción a la ciberseguridad</h3>
+                        <p class="badge-issuer">Cisco</p>
+                        <p class="badge-date">7 feb 2026</p>
+                    </div>
+                </a>
+                <a class="badge-card" href="https://www.credly.com/users/katalina-escarlet-sepulveda-lopez/badges" target="_blank" rel="noopener" data-animate>
+                    <div class="badge-icon cisco">CISCO</div>
+                    <div class="badge-body">
+                        <h3 class="badge-title">Conceptos básicos de redes</h3>
+                        <p class="badge-issuer">Cisco</p>
+                        <p class="badge-date">30 ene 2026</p>
+                    </div>
+                </a>
+                <a class="badge-card" href="https://www.credly.com/badges/631822c6-f872-4e59-86d7-f775098a11f8/linked_in?t=t9okw8" target="_blank" rel="noopener" data-animate>
+                    <div class="badge-icon cisco">CISCO</div>
+                    <div class="badge-body">
+                        <h3 class="badge-title">Fundamentos de Redes</h3>
+                        <p class="badge-issuer">Cisco Networking Academy</p>
+                        <p class="badge-date">2024</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="badges-cta" data-animate>
+                <a href="https://www.credly.com/users/katalina-escarlet-sepulveda-lopez/badges" target="_blank" rel="noopener" class="btn btn-secondary">Ver todas en Credly →</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Projects Section -->
     <section id="projects">
         <div class="container">
             <div class="section-header" data-animate>
-                <span class="section-tag">// 03. Proyectos Destacados</span>
-                <h2 class="section-title">Soluciones que he construido</h2>
+                <span class="section-tag">// 05. Desarrollo de Software</span>
+                <h2 class="section-title">Mi base técnica: aplicaciones reales</h2>
+                <p class="section-description">Antes del SOC construí sistemas con autenticación LDAP/Active Directory, control de roles y despliegue en Linux. Esa experiencia me ayuda a entender qué hay detrás de los logs que investigo.</p>
             </div>
 
             <div class="projects-grid">
@@ -511,64 +901,11 @@
         </div>
     </section>
 
-    <!-- Certifications Section -->
-    <section id="certifications">
-        <div class="container">
-            <div class="section-header" data-animate>
-                <span class="section-tag">// 04. Certificación</span>
-                <h2 class="section-title">Formación Profesional</h2>
-                <p class="section-description">
-                    Certificación que valida mis conocimientos en infraestructura de redes y tecnologías de comunicación.
-                </p>
-            </div>
-
-            <!-- Una sola grilla con las 4 tarjetas en una fila -->
-            <div class="certifications-grid">
-                <!-- Cert 1 -->
-                <div class="cert-card" data-animate>
-                    <div class="cert-header">
-                        <div class="cert-logo cisco-logo">
-                            <svg viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M20.5 10.5h-2v3h2v-3zm-3.5 0h-2v3h2v-3zm-3.5 0h-2v3h2v-3zm-3.5 0h-2v3h2v-3zm-3.5 0h-2v3h2v-3z"/>
-                            </svg>
-                        </div>
-                        <div class="cert-info">
-                            <h3 class="cert-title">Fundamentos de Redes</h3>
-                            <p class="cert-issuer">Cisco Networking Academy</p>
-                        </div>
-                    </div>
-                    <div class="cert-details">
-                        <p class="cert-description">
-                            Certificación completa en fundamentos de redes y comunicaciones. Conocimientos sobre tipos de redes, 
-                            funcionamiento de dispositivos de red, envío y recepción de datos, cableado de red, direcciones IP, 
-                            transporte y aplicaciones. Incluye experiencia práctica con hasta 13 actividades en Cisco Packet Tracer 
-                            y creación de redes inalámbricas domésticas.
-                        </p>
-                        <div class="cert-skills">
-                            <span class="skill-badge">Networking</span>
-                            <span class="skill-badge">IPv4</span>
-                            <span class="skill-badge">Protocolos de Red</span>
-                            <span class="skill-badge">Medios de Comunicación</span>
-                            <span class="skill-badge">Acceso Inalámbrico</span>
-                            <span class="skill-badge">Cisco Packet Tracer</span>
-                            <span class="skill-badge">Capa de Aplicación</span>
-                            <span class="skill-badge">Infraestructura IT</span>
-                        </div>
-                    </div>
-                    <div class="cert-footer">
-                        <span class="cert-date">2024</span>
-                        <a href="https://www.credly.com/badges/631822c6-f872-4e59-86d7-f775098a11f8/linked_in?t=t9okw8" class="cert-link">Ver credencial →</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Experience Section -->
     <section id="experience">
         <div class="container">
             <div class="section-header" data-animate>
-                <span class="section-tag">// 05. Estudios</span>
+                <span class="section-tag">// 06. Estudios</span>
                 <h2 class="section-title">Trayectoria académica</h2>
             </div>
 
@@ -598,11 +935,11 @@
         <div class="container">
             <div class="contact-wrapper">
                 <div class="contact-info" data-animate>
-                    <span class="section-tag">// 06. Contacto</span>
-                    <h2>¿Trabajamos juntos?</h2>
+                    <span class="section-tag">// 07. Contacto</span>
+                    <h2>Busco mi primer rol SOC</h2>
                     <p class="section-description">
-                        Estoy disponible para proyectos freelance, colaboraciones o posiciones full-time. 
-                        Envíame un mensaje y conversemos sobre cómo puedo ayudarte.
+                        Estoy buscando una posición como SOC Analyst (junior) en modalidad remota.
+                        También estoy abierta a colaboraciones y proyectos. Escríbeme y conversemos.
                     </p>
 
                     <div class="contact-details">
@@ -622,7 +959,7 @@
                             </svg>
                             <div>
                                 <div class="contact-label">GitHub</div>
-                                <a href="https://github.com/kelsllopez" target="_blank" class="contact-value-link">github.com/kelsllopez </a>
+                                <a href="https://github.com/kelsllopez" target="_blank" rel="noopener" class="contact-value-link">github.com/kelsllopez </a>
                             </div>
                         </div>
 
@@ -633,6 +970,16 @@
                             <div>
                                 <div class="contact-label">LinkedIn</div>
                                 <a href="https://www.linkedin.com/in/katalina-escarlet-sepulveda-lopez-6854392b1/" target="_blank" class="contact-value-link">https://www.linkedin.com/in/katalina-escarlet-sepulveda-lopez-6854392b1/</a>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <svg class="contact-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                            </svg>
+                            <div>
+                                <div class="contact-label">Credly</div>
+                                <a href="https://www.credly.com/users/katalina-escarlet-sepulveda-lopez/badges" target="_blank" rel="noopener" class="contact-value-link">credly.com/users/katalina-escarlet-sepulveda-lopez</a>
                             </div>
                         </div>
                     </div>
@@ -655,7 +1002,7 @@
                             <select id="subject" name="subject" required>
                                 <option value="">Selecciona un motivo</option>
                                 <option value="freelance">Proyecto Freelance</option>
-                                <option value="job">Oferta Laboral</option>
+                                <option value="job">Oferta Laboral SOC / Blue Team</option>
                                 <option value="collaboration">Colaboración</option>
                                 <option value="other">Otro</option>
                             </select>
@@ -663,7 +1010,7 @@
 
                         <div class="form-group">
                             <label for="message">Mensaje</label>
-                            <textarea id="message" name="message" required rows="6" placeholder="Cuéntame sobre tu proyecto o propuesta..."></textarea>
+                            <textarea id="message" name="message" required rows="6" placeholder="Cuéntame sobre el rol, el equipo o tu propuesta..."></textarea>
                         </div>
 
                         <button type="submit" class="btn btn-primary btn-submit">
@@ -677,6 +1024,7 @@
             </div>
         </div>
     </section>
+
 
     <!-- Lightbox Modal -->
     <div class="lightbox-modal" id="lightboxModal">
@@ -694,7 +1042,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2025 Katalina Sepúlveda López | Ingeniera en Informática | Backend Developer</p>
+            <p>&copy; 2026 Katalina Sepúlveda López | SOC Analyst · Blue Team | Valdivia / Temuco, Chile</p>
         </div>
     </footer>
     <script src="js/main.js"></script>
@@ -702,7 +1050,3 @@
 </body>
 
 </html>
-
-
-
-
