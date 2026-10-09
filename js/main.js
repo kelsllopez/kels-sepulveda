@@ -112,9 +112,9 @@ document.addEventListener('DOMContentLoaded', () => {
     carouselElements.forEach((carousel, index) => {
         currentSlides[index] = 0;
 
-        // Generar dots
         const slides = carousel.querySelectorAll('.carousel-slide');
         const dotsContainer = carousel.parentElement.querySelector('.carousel-dots');
+
         if (dotsContainer && slides.length > 1) {
             dotsContainer.innerHTML = '';
             slides.forEach((_, i) => {
@@ -127,21 +127,16 @@ document.addEventListener('DOMContentLoaded', () => {
             dotsContainer.style.display = 'none';
         }
 
-        // Si solo hay 1 slide, ocultar botones de navegación
         if (slides.length <= 1) {
             const prevBtn = carousel.parentElement.querySelector('.carousel-nav.prev');
             const nextBtn = carousel.parentElement.querySelector('.carousel-nav.next');
             if (prevBtn) prevBtn.style.display = 'none';
             if (nextBtn) nextBtn.style.display = 'none';
-        }
-
-        // Autoplay si hay más de 1 slide
-        if (slides.length > 1) {
+        } else {
             startAutoplay(index);
         }
     });
 
-    // Bind prev/next
     document.querySelectorAll('.project-carousel').forEach((carouselWrapper, index) => {
         const prevBtn = carouselWrapper.querySelector('.carousel-nav.prev');
         const nextBtn = carouselWrapper.querySelector('.carousel-nav.next');
@@ -160,7 +155,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Touch/swipe
     carouselElements.forEach((carousel, index) => {
         let touchStartX = 0;
         let isDragging = false;
@@ -182,7 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }, { passive: true });
 
-        // Click en imagen → lightbox
         carousel.querySelectorAll('.carousel-slide img').forEach((img) => {
             img.addEventListener('click', () => {
                 if (!isDragging) {
