@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Katalina Sepúlveda | Aspirante a SOC Analyst Junior</title>
-    <meta name="description" content="Portafolio de Katalina Sepúlveda, aspirante a SOC Analyst Junior. Home lab con Wazuh, detecciones MITRE ATT&CK, reportes de incidente NIST SP 800-61 e insignias Cisco e ISC2. Estudiando de forma autodidacta, disponible para trabajo remoto.">
+    <meta name="description" content="Portafolio de Katalina Sepúlveda, aspirante a SOC Analyst Junior. Home lab con Wazuh, 6 escenarios de ataque simulados, 5 reglas de detección MITRE ATT&CK, 5 reportes NIST SP 800-61 e insignias Cisco e ISC2. Disponible para trabajo remoto, turnos rotativos.">
     <meta name="keywords" content="Katalina Sepúlveda, SOC Analyst Junior, Blue Team, Wazuh, SIEM, MITRE ATT&CK, NIST 800-61, ciberseguridad, Chile, remoto, portafolio">
     <meta property="og:title" content="Katalina Sepúlveda | Aspirante a SOC Analyst Junior">
     <meta property="og:description" content="Estudiando de forma autodidacta para mi primer rol como SOC Analyst Junior. Home lab Wazuh, detecciones MITRE ATT&CK y reportes NIST.">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Syne:wght@400;600;700&display=swap" rel="stylesheet">
@@ -46,20 +48,27 @@
                     Actualmente trabajo en atención al cliente y estudio de forma autodidacta
                     para conseguir mi primer rol como SOC Analyst Junior. Mantengo un home lab
                     con Wazuh donde simulo ataques, escribo detecciones y documento incidentes
-                    con NIST SP 800-61 y MITRE ATT&amp;CK. Busco una oportunidad remota en Blue Team.
+                    con NIST SP 800-61 y MITRE ATT&amp;CK.
                 </p>
                 <div class="hero-status">
-                    <span class="status-dot"></span> Buscando mi primera oportunidad SOC · Chile (UTC-3) · Remoto
+                    <span class="status-dot"></span> Remoto (UTC-3) · Turnos rotativos · Fines de semana
                 </div>
                 <div class="hero-cta">
-                    <a href="#soc" class="btn btn-primary">Ver mi SOC Lab →</a>
-                    <a href="https://github.com/kelsllopez" target="_blank" rel="noopener" class="btn btn-secondary">GitHub</a>
-                    <a href="#contact" class="btn btn-secondary">Contactar</a>
+                    <a href="https://github.com/kelsllopez/soc-homelab-detections"
+                       target="_blank" rel="noopener" class="btn btn-primary">
+                        Ver mi SOC Lab en GitHub →
+                    </a>
+                    <a href="cv.html" target="_blank" rel="noopener" class="btn btn-secondary">
+                        📄 Descargar CV
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        Contactar
+                    </a>
                 </div>
             </div>
 
             <div class="code-snippet">
-                <pre><span class="comment">&lt;!-- ejemplo: regla custom Wazuh --&gt;</span>
+                <pre><span class="comment">&lt;!-- regla real: soc-homelab-detections --&gt;</span>
 <span class="keyword">&lt;rule</span> <span class="class">id</span>=<span class="string">"100002"</span> <span class="class">level</span>=<span class="string">"12"</span>
       <span class="class">frequency</span>=<span class="string">"8"</span> <span class="class">timeframe</span>=<span class="string">"120"</span><span class="keyword">&gt;</span>
   <span class="keyword">&lt;if_matched_sid&gt;</span><span class="string">60122</span><span class="keyword">&lt;/if_matched_sid&gt;</span>
@@ -251,36 +260,6 @@
                         </div>
                         <div class="project-links">
                             <a href="https://github.com/kelsllopez/windows-event-investigator" target="_blank" rel="noopener" class="btn btn-secondary">Ver repositorio</a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="project-card soc-card" data-animate>
-                    <div class="soc-banner"><span class="soc-icon">🔍</span><span class="soc-repo">kelsllopez/cyberpilot-ai</span></div>
-                    <div class="project-content">
-                        <div class="project-header">
-                            <div>
-                                <h3 class="project-title">CyberPilot AI — Escáner de seguridad web</h3>
-                                <span class="project-type">Full-stack | Seguridad</span>
-                            </div>
-                        </div>
-                        <p class="project-description">
-                            Aplicación full-stack que analiza la seguridad de sitios web con
-                            un motor de múltiples analizadores y un sistema de puntuación.
-                            Une mi experiencia en desarrollo con el enfoque de seguridad.
-                        </p>
-                        <div class="project-architecture">
-                            <h4>Tecnologías</h4>
-                            <div class="architecture-list">
-                                <span class="architecture-item">Node.js / Express</span>
-                                <span class="architecture-item">TypeScript</span>
-                                <span class="architecture-item">React + Vite</span>
-                                <span class="architecture-item">JWT</span>
-                                <span class="architecture-item">GitHub Actions</span>
-                            </div>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/kelsllopez/cyberpilot-ai" target="_blank" rel="noopener" class="btn btn-secondary">Ver repositorio</a>
                         </div>
                     </div>
                 </article>
@@ -546,16 +525,18 @@
         </div>
     </section>
 
-    <!-- Proyectos de Desarrollo -->
+    <!-- Proyectos de Desarrollo (ahora solo 2) -->
     <section id="projects">
         <div class="container">
             <div class="section-header" data-animate>
                 <span class="section-tag">// 05. Desarrollo de Software</span>
                 <h2 class="section-title">Mi base técnica</h2>
                 <p class="section-description">
-                    Antes del SOC construí sistemas reales: autenticación LDAP/Active Directory,
-                    control de roles, despliegue en Linux y desarrollo full-stack. Esa experiencia
-                    me ayuda a entender qué hay detrás de los logs que investigo.
+                    Construí estos sistemas antes de enfocarme en Blue Team, y esa experiencia
+                    me da una ventaja real en el SOC: entiendo cómo se construyen las aplicaciones
+                    (Django, autenticación LDAP, despliegue en Linux), sé leer los logs que generan,
+                    detecto configuraciones débiles y puedo comunicarme mejor con equipos de
+                    desarrollo cuando hay que remediar una vulnerabilidad.
                 </p>
             </div>
 
@@ -606,98 +587,11 @@
                     </div>
                 </article>
 
-                <!-- FOG Project -->
-                <article class="project-card" data-animate>
-                    <div class="project-carousel">
-                        <div class="carousel-container">
-                            <div class="carousel-slides" data-carousel="1">
-                                <div class="carousel-slide">
-                                    <div class="carousel-placeholder">
-                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                                        <span>Agrega aquí tu captura</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="carousel-nav prev" aria-label="Anterior">‹</button>
-                            <button class="carousel-nav next" aria-label="Siguiente">›</button>
-                            <div class="carousel-dots"></div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-header">
-                            <div>
-                                <h3 class="project-title">Clonación de Sistemas con FOG Project</h3>
-                                <span class="project-type">Infraestructura IT | 2025</span>
-                            </div>
-                        </div>
-                        <p class="project-description">
-                            Implementación de FOG Project sobre Ubuntu Server para clonar
-                            equipos de forma eficiente en entornos de oficina. Automatización
-                            del proceso de instalación y configuración de estaciones de trabajo,
-                            reduciendo tiempos de deployment.
-                        </p>
-                        <div class="project-architecture">
-                            <h4>Arquitectura &amp; Características</h4>
-                            <div class="architecture-list">
-                                <span class="architecture-item">FOG Project</span>
-                                <span class="architecture-item">Ubuntu Server</span>
-                            </div>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/kelsllopez/manual_instalacion_fog_project/blob/main/fog%20project.pdf" target="_blank" rel="noopener" class="btn btn-secondary">Ver manual</a>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- La Casa Quiltra -->
-                <article class="project-card" data-animate>
-                    <div class="project-carousel">
-                        <div class="carousel-container">
-                            <div class="carousel-slides" data-carousel="2">
-                                <div class="carousel-slide">
-                                    <div class="carousel-placeholder">
-                                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-                                        <span>Agrega aquí tu captura</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <button class="carousel-nav prev" aria-label="Anterior">‹</button>
-                            <button class="carousel-nav next" aria-label="Siguiente">›</button>
-                            <div class="carousel-dots"></div>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <div class="project-header">
-                            <div>
-                                <h3 class="project-title">La Casa Quiltra — Refugio de Animales</h3>
-                                <span class="project-type">Desarrollo Full-Stack | 2025</span>
-                            </div>
-                        </div>
-                        <p class="project-description">
-                            Plataforma web completa desarrollada para el refugio animal
-                            "Casa La Quiltra" en Valdivia, Chile. Sistema centralizado para
-                            gestionar adopciones, donaciones y eventos, facilitando la conexión
-                            entre el refugio y la comunidad.
-                        </p>
-                        <div class="project-architecture">
-                            <h4>Arquitectura &amp; Características</h4>
-                            <div class="architecture-list">
-                                <span class="architecture-item">Django</span>
-                                <span class="architecture-item">MySQL</span>
-                                <span class="architecture-item">jQuery</span>
-                            </div>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://la-casa-quiltra.onrender.com/" target="_blank" rel="noopener" class="btn btn-secondary">Ver en Render</a>
-                        </div>
-                    </div>
-                </article>
-
                 <!-- Huella Urbana -->
                 <article class="project-card" data-animate>
                     <div class="project-carousel">
                         <div class="carousel-container">
-                            <div class="carousel-slides" data-carousel="3">
+                            <div class="carousel-slides" data-carousel="1">
                                 <div class="carousel-slide">
                                     <div class="carousel-placeholder">
                                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
@@ -734,6 +628,7 @@
                         </div>
                         <div class="project-links">
                             <a href="https://huella-urbana.onrender.com/" target="_blank" rel="noopener" class="btn btn-secondary">Ver en Render</a>
+                            <a href="https://github.com/kelsllopez" target="_blank" rel="noopener" class="btn btn-secondary">Ver más repos</a>
                         </div>
                     </div>
                 </article>
@@ -826,8 +721,8 @@
                     <p class="section-description">
                         Estoy buscando mi primer trabajo como SOC Analyst Junior, en modalidad
                         remota. Vengo de soporte TI y desarrollo, y hoy estudio de forma autodidacta
-                        con foco 100% en Blue Team. Si tienes una posición junior, una práctica, o
-                        simplemente quieres conversar sobre ciberseguridad, escríbeme.
+                        con foco 100% en Blue Team. Disponible para turnos rotativos (mañana, tarde
+                        y noche), fines de semana y feriados.
                     </p>
 
                     <div class="contact-details">
@@ -917,19 +812,11 @@
 
                         <div class="form-status"></div>
 
-                        <div class="form-divider">
-                            <span>o si prefieres</span>
-                        </div>
-
-                        <a href="https://wa.me/56965604235?text=Hola%20Katalina%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20contactarte"
-                           target="_blank"
-                           rel="noopener"
-                           class="btn btn-whatsapp">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                            </svg>
-                            Escribir por WhatsApp
-                        </a>
+                        <p class="form-alt-contact">
+                            ¿Prefieres algo más directo?
+                            <a href="https://wa.me/56965604235?text=Hola%20Katalina%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20contactarte"
+                               target="_blank" rel="noopener">Escríbeme por WhatsApp →</a>
+                        </p>
                     </form>
                 </div>
             </div>
