@@ -13,7 +13,6 @@ if (mobileMenuToggle && navLinks) {
         document.body.style.overflow = isOpen ? '' : 'hidden';
     });
 
-    // Close menu when clicking on a link
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             mobileMenuToggle.classList.remove('active');
@@ -22,7 +21,6 @@ if (mobileMenuToggle && navLinks) {
         });
     });
 
-    // Close menu when clicking outside
     document.addEventListener('click', (e) => {
         if (navLinks.classList.contains('active') &&
             !navLinks.contains(e.target) &&
@@ -33,7 +31,6 @@ if (mobileMenuToggle && navLinks) {
         }
     });
 
-    // Close on ESC key
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && navLinks.classList.contains('active')) {
             mobileMenuToggle.classList.remove('active');
@@ -44,7 +41,7 @@ if (mobileMenuToggle && navLinks) {
 }
 
 // ================================================
-// Smooth scroll (respects reduced motion)
+// Smooth scroll
 // ================================================
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -64,7 +61,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // ================================================
-// Scroll animations (IntersectionObserver)
+// Scroll animations
 // ================================================
 const observerOptions = {
     threshold: 0.08,
@@ -104,50 +101,58 @@ sections.forEach(section => scrollObserver.observe(section));
 // ================================================
 // CAROUSEL
 // ================================================
+let carouselElements = [];
 let currentSlides = {};
 let autoTimers = {};
-let carouselElements = [];
-
-const AUTOPLAY_DELAY = 3500;
+const AUTOPLAY_DELAY = 5000;
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Collect all carousels by DOM order
-    document.querySelectorAll('.carousel-slides').forEach((el, index) => {
-        carouselElements[index] = el;
-        currentSlides[index] = 0;
-        startAutoplay(index);
-    });
+    carouselElements = Array.from(document.querySelectorAll('.carousel-slides'));
 
-    // Generate dots dynamically
     carouselElements.forEach((carousel, index) => {
+        currentSlides[index] = 0;
+
+        // Generar dots
         const slides = carousel.querySelectorAll('.carousel-slide');
         const dotsContainer = carousel.parentElement.querySelector('.carousel-dots');
-        if (!dotsContainer) return;
+        if (dotsContainer && slides.length > 1) {
+            dotsContainer.innerHTML = '';
+            slides.forEach((_, i) => {
+                const dot = document.createElement('span');
+                dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+                dot.addEventListener('click', () => goToSlide(index, i));
+                dotsContainer.appendChild(dot);
+            });
+        } else if (dotsContainer) {
+            dotsContainer.style.display = 'none';
+        }
 
-        dotsContainer.innerHTML = '';
+        // Si solo hay 1 slide, ocultar botones de navegación
+        if (slides.length <= 1) {
+            const prevBtn = carousel.parentElement.querySelector('.carousel-nav.prev');
+            const nextBtn = carousel.parentElement.querySelector('.carousel-nav.next');
+            if (prevBtn) prevBtn.style.display = 'none';
+            if (nextBtn) nextBtn.style.display = 'none';
+        }
 
-        slides.forEach((_, i) => {
-            const dot = document.createElement('span');
-            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-            dot.addEventListener('click', () => goToSlide(index, i));
-            dotsContainer.appendChild(dot);
-        });
+        // Autoplay si hay más de 1 slide
+        if (slides.length > 1) {
+            startAutoplay(index);
+        }
     });
 
-    // Rebind prev/next buttons by DOM index
+    // Bind prev/next
     document.querySelectorAll('.project-carousel').forEach((carouselWrapper, index) => {
         const prevBtn = carouselWrapper.querySelector('.carousel-nav.prev');
         const nextBtn = carouselWrapper.querySelector('.carousel-nav.next');
 
         if (prevBtn) {
-            prevBtn.removeAttribute('onclick');
             prevBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 changeSlide(index, -1);
             });
         }
         if (nextBtn) {
-            nextBtn.removeAttribute('onclick');
             nextBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 changeSlide(index, 1);
@@ -155,10 +160,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Touch/swipe support for carousels
+    // Touch/swipe
     carouselElements.forEach((carousel, index) => {
         let touchStartX = 0;
-        let touchEndX = 0;
         let isDragging = false;
 
         carousel.addEventListener('touchstart', (e) => {
@@ -166,25 +170,24 @@ document.addEventListener('DOMContentLoaded', () => {
             isDragging = false;
         }, { passive: true });
 
-        carousel.addEventListener('touchmove', (e) => {
+        carousel.addEventListener('touchmove', () => {
             isDragging = true;
         }, { passive: true });
 
         carousel.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
+            const touchEndX = e.changedTouches[0].screenX;
             const diff = touchStartX - touchEndX;
-            if (Math.abs(diff) > 40) { // min swipe distance
+            if (Math.abs(diff) > 40) {
                 changeSlide(index, diff > 0 ? 1 : -1);
             }
         }, { passive: true });
 
-        // Click on image → lightbox
+        // Click en imagen → lightbox
         carousel.querySelectorAll('.carousel-slide img').forEach((img) => {
-            const slideIndex = Array.from(carousel.querySelectorAll('.carousel-slide'))
-                .indexOf(img.closest('.carousel-slide'));
-
             img.addEventListener('click', () => {
                 if (!isDragging) {
+                    const slideIndex = Array.from(carousel.querySelectorAll('.carousel-slide'))
+                        .indexOf(img.closest('.carousel-slide'));
                     openLightbox(index, slideIndex);
                 }
             });
@@ -192,9 +195,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// ------------------------------------------------
-// Autoplay
-// ------------------------------------------------
 function startAutoplay(carouselIndex) {
     if (autoTimers[carouselIndex]) clearInterval(autoTimers[carouselIndex]);
     autoTimers[carouselIndex] = setInterval(() => {
@@ -207,14 +207,13 @@ function resetAutoplay(carouselIndex) {
     startAutoplay(carouselIndex);
 }
 
-// ------------------------------------------------
-// Slide change
-// ------------------------------------------------
 function changeSlide(carouselIndex, direction, resetTimer = true) {
     const carousel = carouselElements[carouselIndex];
     if (!carousel) return;
 
     const slides = carousel.querySelectorAll('.carousel-slide');
+    if (slides.length <= 1) return;
+
     currentSlides[carouselIndex] += direction;
 
     if (currentSlides[carouselIndex] < 0) {
@@ -291,7 +290,6 @@ function updateLightboxImage() {
     if (counter) counter.textContent = `${currentLightboxIndex + 1} / ${lightboxImages.length}`;
 }
 
-// Keyboard navigation
 document.addEventListener('keydown', (e) => {
     const modal = document.getElementById('lightboxModal');
     if (!modal || !modal.classList.contains('active')) return;
@@ -301,7 +299,6 @@ document.addEventListener('keydown', (e) => {
     else if (e.key === 'ArrowRight') lightboxNavigate(1);
 });
 
-// Touch swipe on lightbox
 (function () {
     const modal = document.getElementById('lightboxModal');
     if (!modal) return;
@@ -316,14 +313,13 @@ document.addEventListener('keydown', (e) => {
         if (Math.abs(diff) > 40) lightboxNavigate(diff > 0 ? 1 : -1);
     }, { passive: true });
 
-    // Click outside image closes lightbox
     modal.addEventListener('click', (e) => {
         if (e.target === modal) closeLightbox();
     });
 })();
 
 // ================================================
-// SCROLL TO TOP BUTTON
+// SCROLL TO TOP
 // ================================================
 (function () {
     const btn = document.createElement('button');
@@ -353,7 +349,7 @@ document.addEventListener('keydown', (e) => {
 })();
 
 // ================================================
-// CONTACT FORM HANDLING
+// CONTACT FORM
 // ================================================
 const contactForm = document.getElementById('contactForm');
 const formStatus = document.querySelector('.form-status');
