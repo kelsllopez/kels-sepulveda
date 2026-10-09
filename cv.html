@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CV — Katalina Sepúlveda López</title>
+    <style>
+        @page { size: A4; margin: 12mm; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Helvetica', 'Arial', sans-serif;
+            color: #1a1a1a;
+            line-height: 1.45;
+            font-size: 10.5pt;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 15mm;
+            background: #fff;
+        }
+        header {
+            border-bottom: 2px solid #7c3aed;
+            padding-bottom: 12px;
+            margin-bottom: 16px;
+        }
+        h1 {
+            font-size: 20pt;
+            color: #1a1a1a;
+            margin-bottom: 4px;
+        }
+        .subtitle {
+            font-size: 11pt;
+            color: #7c3aed;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .contact {
+            font-size: 9pt;
+            color: #555;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .contact span::before { content: '·'; margin-right: 6px; color: #7c3aed; }
+        .contact span:first-child::before { content: ''; margin: 0; }
+        h2 {
+            font-size: 11pt;
+            color: #7c3aed;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 4px;
+            margin: 16px 0 10px;
+        }
+        h3 { font-size: 10.5pt; margin-bottom: 2px; }
+        .meta {
+            font-size: 9pt;
+            color: #666;
+            margin-bottom: 4px;
+            font-style: italic;
+        }
+        ul { margin-left: 16px; margin-top: 4px; }
+        li { margin-bottom: 3px; font-size: 10pt; }
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6px 20px;
+        }
+        .summary {
+            background: #faf5ff;
+            border-left: 3px solid #7c3aed;
+            padding: 10px 12px;
+            font-size: 10pt;
+            margin-bottom: 8px;
+        }
+        .stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 6px;
+        }
+        .stat {
+            background: #f3e8ff;
+            color: #5b21b6;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 9pt;
+        }
+        strong { color: #1a1a1a; }
+        .small { font-size: 9pt; color: #666; }
+        @media print { body { padding: 0; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Katalina Escarlet Sepúlveda López</h1>
+        <div class="subtitle">Aspirante a SOC Analyst Junior · Blue Team</div>
+        <div class="contact">
+            <span>kels.sepulvedaa@gmail.com</span>
+            <span>+56 9 6560 4235</span>
+            <span>github.com/kelsllopez</span>
+            <span>linkedin.com/in/katalina-escarlet-sepulveda-lopez</span>
+            <span>Valdivia / Temuco, Chile · Remoto</span>
+        </div>
+    </header>
+
+    <h2>Resumen</h2>
+    <div class="summary">
+        Ingeniera en Informática con base en soporte TI y desarrollo de software.
+        Estudio ciberseguridad de forma autodidacta con foco en Blue Team: mantengo
+        un home lab con Wazuh SIEM donde simulo ataques, escribo reglas de detección
+        y documento incidentes siguiendo NIST SP 800-61 y MITRE ATT&amp;CK.
+        Busco mi primera oportunidad como SOC Analyst Junior, en modalidad remota.
+    </div>
+
+    <h2>Home Lab — SOC Blue Team</h2>
+    <h3>SOC Home Lab — Wazuh SIEM &amp; Detecciones</h3>
+    <div class="meta">Proyecto autodidacta · 2024 – Presente · github.com/kelsllopez/soc-homelab-detections</div>
+    <ul>
+        <li>6 escenarios de ataque simulados: reconocimiento, fuerza bruta, movimiento lateral, escalada de privilegios y persistencia.</li>
+        <li>5 reglas de detección custom en Wazuh, mapeadas a MITRE ATT&amp;CK.</li>
+        <li>5 reportes de incidente formales siguiendo NIST SP 800-61.</li>
+        <li>Laboratorio con VirtualBox: Kali Linux, Windows Server, Ubuntu, Active Directory.</li>
+        <li>Análisis de Windows Event Logs y firewall logs. Automatización con Python y PowerShell.</li>
+    </ul>
+    <div class="stats">
+        <span class="stat">Wazuh</span>
+        <span class="stat">MITRE ATT&amp;CK</span>
+        <span class="stat">NIST SP 800-61</span>
+        <span class="stat">Wireshark</span>
+        <span class="stat">Kali Linux</span>
+        <span class="stat">Windows Server</span>
+        <span class="stat">VirtualBox</span>
+    </div>
+
+    <h2>Experiencia</h2>
+
+    <h3>Ejecutiva de Atención al Cliente</h3>
+    <div class="meta">Integramédica · Call Center · 2025 – Presente</div>
+    <ul>
+        <li>Atención telefónica a usuarios y agendamiento/reserva de horas médicas.</li>
+        <li>Trabajo actual, compatible con mi formación autodidacta en ciberseguridad.</li>
+    </ul>
+
+    <h3>Soporte TI y Mantención de Equipos (Honorarios)</h3>
+    <div class="meta">Portuaria Corral · 2025</div>
+    <ul>
+        <li>Mantención de equipos, soporte a usuarios y configuración de estaciones de trabajo.</li>
+        <li>Implementación de clonación de sistemas con FOG Project sobre Ubuntu Server.</li>
+    </ul>
+
+    <h3>Práctica Profesional — Soporte TI</h3>
+    <div class="meta">Portuaria Corral · 2025</div>
+    <ul>
+        <li>Desarrollo de un sistema web para el registro de accesos del personal portuario.</li>
+        <li>Integración con Active Directory mediante LDAP, control de roles y dashboard de reportes.</li>
+    </ul>
+
+    <h2>Insignias &amp; Certificaciones</h2>
+    <ul>
+        <li><strong>ISC2 Candidate</strong> — ISC2 (vigente hasta abr 2027, preparando examen CC).</li>
+        <li><strong>Carrera de Analista de Ciberseguridad Junior</strong> — Cisco (feb 2026).</li>
+        <li><strong>Gestión de Amenazas Cibernéticas</strong> — Cisco (feb 2026).</li>
+        <li><strong>Defensa de Red</strong> — Cisco (feb 2026).</li>
+        <li><strong>Seguridad de Endpoints</strong> — Cisco (feb 2026).</li>
+        <li><strong>Dispositivos de Red y Configuración Inicial</strong> — Cisco (feb 2026).</li>
+        <li><strong>Introducción a la Ciberseguridad</strong> — Cisco (feb 2026).</li>
+        <li><strong>Conceptos Básicos de Redes</strong> — Cisco (ene 2026).</li>
+    </ul>
+    <div class="small">Todas verificables en credly.com/users/katalina-escarlet-sepulveda-lopez</div>
+
+    <h2>Habilidades Técnicas</h2>
+    <div class="two-col">
+        <div>
+            <strong>SIEM &amp; Monitoreo:</strong> Wazuh, ELK Stack, Windows Event Logs.<br>
+            <strong>Frameworks:</strong> MITRE ATT&amp;CK, NIST SP 800-61, Kill Chain.<br>
+            <strong>Análisis:</strong> Wireshark, VirusTotal, SPF/DKIM/DMARC, IOCs.<br>
+            <strong>Automatización:</strong> Python, PowerShell, Git, GitHub Actions.
+        </div>
+        <div>
+            <strong>Laboratorio:</strong> VirtualBox, Kali Linux, Active Directory, Windows Server, Ubuntu.<br>
+            <strong>Backend:</strong> Python, Django, Django REST Framework, Flask, LDAP.<br>
+            <strong>Bases de datos:</strong> PostgreSQL, MySQL, SQL Server.<br>
+            <strong>DevOps:</strong> Docker, Linux, AWS, Nginx, Render.
+        </div>
+    </div>
+
+    <h2>Educación</h2>
+    <h3>Ingeniería en Informática</h3>
+    <div class="meta">INACAP · 2020 – 2024</div>
+
+    <h3>Analista Programador</h3>
+    <div class="meta">INACAP · 2020 – 2022</div>
+
+    <h3>Técnico en Programación</h3>
+    <div class="meta">Instituto Comercial de Valdivia · 2018 – 2019</div>
+
+    <h2>Disponibilidad</h2>
+    <ul>
+        <li>Modalidad remota (Chile, UTC-3).</li>
+        <li>Jornada completa · Disponibilidad para turnos rotativos (mañana / tarde / noche).</li>
+        <li>Disponible para trabajar fines de semana y feriados si el equipo lo requiere.</li>
+    </ul>
+
+</body>
+</html>
