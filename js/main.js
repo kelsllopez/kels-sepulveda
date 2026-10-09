@@ -6,33 +6,36 @@ const navLinks = document.querySelector('.nav-links');
 
 if (mobileMenuToggle && navLinks) {
     mobileMenuToggle.addEventListener('click', (e) => {
+        e.preventDefault();
         e.stopPropagation();
         const isOpen = navLinks.classList.contains('active');
-        mobileMenuToggle.classList.toggle('active');
-        navLinks.classList.toggle('active');
+        mobileMenuToggle.classList.toggle('active', !isOpen);
+        navLinks.classList.toggle('active', !isOpen);
         document.body.style.overflow = isOpen ? '' : 'hidden';
     });
 
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
+    // Cerrar el menú al tocar un enlace
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', (e) => {
+            // No prevengas el comportamiento del ancla, solo cierra el menú
             mobileMenuToggle.classList.remove('active');
             navLinks.classList.remove('active');
             document.body.style.overflow = '';
         });
     });
 
-    document.addEventListener('click', (e) => {
-        if (navLinks.classList.contains('active') &&
-            !navLinks.contains(e.target) &&
-            !mobileMenuToggle.contains(e.target)) {
+    // Cerrar con ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && navLinks.classList.contains('active')) {
             mobileMenuToggle.classList.remove('active');
             navLinks.classList.remove('active');
             document.body.style.overflow = '';
         }
     });
 
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+    // Cerrar al redimensionar a desktop
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768 && navLinks.classList.contains('active')) {
             mobileMenuToggle.classList.remove('active');
             navLinks.classList.remove('active');
             document.body.style.overflow = '';
